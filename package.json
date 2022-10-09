@@ -4,9 +4,15 @@
     "description": "A CRUD API for movies",
     "main": "server.js",
     "scripts": {
-        "start": "npx tsc && node dist/server.js",
+        "start": "node dist/server.js",
         "dev": "nodemon src/server.ts",
+        "build": "npx tsc",
+        "heroku-prebuild": "npm run build",
         "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "engines": {
+        "node": "16.17.0",
+        "npm": "8.19.2"
     },
     "author": "Barath C",
     "license": "ISC",

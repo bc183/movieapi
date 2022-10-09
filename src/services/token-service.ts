@@ -1,14 +1,15 @@
 import jwt from "jsonwebtoken";
 import { Tokens } from "../types";
+import { Environment, getEnv } from "../utils";
 
 class TokenService {
     generateAccessToken(email: string): string {
         try {
             const accessToken = jwt.sign(
                 { email: email, type: Tokens.access },
-                process.env.SECRET!,
+                getEnv(Environment.SECRET),
                 {
-                    expiresIn: "5m",
+                    expiresIn: getEnv(Environment.ACCESS_TOKEN_EXPIRY),
                 }
             );
             return accessToken;
@@ -21,9 +22,9 @@ class TokenService {
         try {
             const refreshToken = jwt.sign(
                 { email: email, type: Tokens.refresh },
-                process.env.SECRET!,
+                getEnv(Environment.SECRET),
                 {
-                    expiresIn: "2 days",
+                    expiresIn: getEnv(Environment.REFRESH_TOKEN_EXPIRY),
                 }
             );
             return refreshToken;
