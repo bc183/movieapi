@@ -5,6 +5,7 @@ export interface IResponse<Data = void, E = void> {
     error: E | null;
     status: boolean;
     statusCode: StatusCodes;
+    totalRecords?: number;
 }
 
 export interface IUser {

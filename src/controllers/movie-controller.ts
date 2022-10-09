@@ -10,22 +10,19 @@ class MovieController {
         next: NextFunction
     ): Promise<Response<IResponse<IMovie[]>> | void> {
         try {
-            const { page, pageSize, sortField } = req.query;
+            const { page, pageSize } = req.query;
             const pageNumber = page ? +page : 1;
             const pageSizeNumber = pageSize ? +pageSize : 10;
 
             // save movie
-            const movies = await movieService.getAllMovies(
-                pageSizeNumber,
-                pageNumber,
-                sortField as string
-            );
+            const movies = await movieService.getAllMovies(pageSizeNumber, pageNumber);
 
             const response: IResponse<IMovie[]> = {
-                data: movies,
+                data: movies.movies,
                 statusCode: StatusCodes.OK,
                 status: true,
                 error: null,
+                totalRecords: movies.totalRecords,
             };
 
             return res.status(StatusCodes.OK).json(response);

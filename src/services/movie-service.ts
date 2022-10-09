@@ -6,17 +6,23 @@ import { IMovie, IMovieDTO, IUser, PrismaErrorCodes } from "../types";
 import { createStartAndEndIndex } from "../utils";
 
 class MovieService {
-    async getAllMovies(noOfRecords?: number, page?: number, sortField?: string): Promise<IMovie[]> {
+    async getAllMovies(
+        noOfRecords?: number,
+        page?: number
+    ): Promise<{ movies: IMovie[]; totalRecords: number }> {
         try {
             const { startIndex, endIndex } = createStartAndEndIndex(page, noOfRecords);
-            const movies = await db.movies.findMany({
-                orderBy: {
-                    releaseDate: "desc",
-                },
-                skip: startIndex,
-                take: endIndex,
-            });
-            return movies;
+            const movies = await db.$transaction([
+                db.movies.count(),
+                db.movies.findMany({
+                    orderBy: {
+                        releaseDate: "desc",
+                    },
+                    skip: startIndex,
+                    take: endIndex,
+                }),
+            ]);
+            return { movies: movies[1], totalRecords: movies[0] };
         } catch (error) {
             throw error;
         }
