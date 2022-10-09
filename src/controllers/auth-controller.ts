@@ -9,11 +9,6 @@ import { IResponse, IUser, IUserWithPassword } from "../types";
 import { Environment, getEnv, removeUserPassword } from "../utils";
 
 class AuthController {
-    constructor() {
-        this.login = this.login.bind(this);
-        // this.getAccessToken = this.getAccessToken.bind(this);
-    }
-
     async register(
         req: Request,
         res: Response<IResponse<IUser>>,
