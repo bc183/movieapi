@@ -10,10 +10,14 @@ export interface IResponse<Data = void, E = void> {
 export interface IUser {
     id?: string;
     email: string;
+    password?: string;
     username: string;
-    password: string;
     createdAt?: Date;
     updatedAt?: Date;
+}
+
+export interface IUserWithPassword extends IUser {
+    password: string;
 }
 
 export enum Tokens {

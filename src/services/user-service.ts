@@ -1,9 +1,9 @@
 import db from "../db";
-import { IUser } from "../types";
+import { IUserWithPassword } from "../types";
 import passwordService from "./password-service";
 
 class UserService {
-    async findUserByEmail(email: string): Promise<IUser | null> {
+    async findUserByEmail(email: string): Promise<IUserWithPassword | null> {
         try {
             const user = await db.users.findUnique({
                 where: {
@@ -16,7 +16,7 @@ class UserService {
         }
     }
 
-    async saveUser(user: IUser): Promise<IUser> {
+    async saveUser(user: IUserWithPassword): Promise<IUserWithPassword> {
         try {
             const encryptedPassword = await passwordService.encryptPassword(user.password);
             const savedUser = await db.users.create({

@@ -1,4 +1,5 @@
 import EnvironmentError from "./exceptions/environment-error";
+import { IUser, IUserWithPassword } from "./types";
 
 export enum Environment {
     PORT = "PORT",
@@ -21,6 +22,14 @@ export const checkEnvironment = () => {
     for (const key in Environment) {
         getEnv(key);
     }
+};
+
+export const removeUserPassword = (user: IUserWithPassword) => {
+    const userWithoutPassword: IUser = {
+        ...user,
+    };
+    delete userWithoutPassword.password;
+    return userWithoutPassword;
 };
 
 export const createStartAndEndIndex = (

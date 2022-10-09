@@ -5,8 +5,8 @@ import ValidationError from "../exceptions/validation-error";
 import passwordService from "../services/password-service";
 import tokenService from "../services/token-service";
 import userService from "../services/user-service";
-import { IResponse, IUser } from "../types";
-import { Environment, getEnv } from "../utils";
+import { IResponse, IUser, IUserWithPassword } from "../types";
+import { Environment, getEnv, removeUserPassword } from "../utils";
 
 class AuthController {
     constructor() {
@@ -21,7 +21,7 @@ class AuthController {
     ): Promise<Response<IResponse<IUser>> | void> {
         try {
             // save user
-            const user = req.body as IUser;
+            const user = req.body as IUserWithPassword;
 
             const retrivedUser = await userService.findUserByEmail(user.email);
 
@@ -32,7 +32,7 @@ class AuthController {
             const savedUser = await userService.saveUser(user);
 
             const response: IResponse<IUser> = {
-                data: savedUser,
+                data: removeUserPassword(savedUser),
                 statusCode: StatusCodes.CREATED,
                 status: true,
                 error: null,
@@ -98,6 +98,10 @@ class AuthController {
                 throw new NotFoundError(`User with this email ${email} not found`);
             }
 
+            if (!user.password) {
+                throw new ValidationError("No password provided");
+            }
+
             await passwordService.comparePassword(user.password, password);
 
             // generate tokens
@@ -122,7 +126,7 @@ class AuthController {
             });
 
             const response: IResponse<IUser> = {
-                data: user,
+                data: removeUserPassword(user),
                 statusCode: StatusCodes.OK,
                 status: true,
                 error: null,
