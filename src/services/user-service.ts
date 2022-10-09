@@ -2,7 +2,15 @@ import db from "../db";
 import { IUserWithPassword } from "../types";
 import passwordService from "./password-service";
 
+/**
+ * Service class for User based operations
+ */
 class UserService {
+    /**
+     *
+     * @param email
+     * @returns Returns a user based on the email
+     */
     async findUserByEmail(email: string): Promise<IUserWithPassword | null> {
         try {
             const user = await db.users.findUnique({
@@ -16,6 +24,11 @@ class UserService {
         }
     }
 
+    /**
+     *
+     * @param user
+     * @description Saves a user to the database
+     */
     async saveUser(user: IUserWithPassword): Promise<IUserWithPassword> {
         try {
             const encryptedPassword = await passwordService.encryptPassword(user.password);

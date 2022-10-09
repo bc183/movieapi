@@ -10,6 +10,11 @@ export enum Environment {
     SECRET = "SECRET",
 }
 
+/**
+ *
+ * @param name
+ * @description Get the environment variable with the given name
+ */
 export const getEnv = (name: string | Environment) => {
     const value = process.env[name];
     if (!value) {
@@ -18,12 +23,19 @@ export const getEnv = (name: string | Environment) => {
     return value;
 };
 
+/**
+ * @description checks if all environment variables exist
+ */
 export const checkEnvironment = () => {
     for (const key in Environment) {
         getEnv(key);
     }
 };
 
+/**
+ * @description removes the password field from user object
+ * @param user
+ */
 export const removeUserPassword = (user: IUserWithPassword) => {
     const userWithoutPassword: IUser = {
         ...user,
@@ -32,6 +44,12 @@ export const removeUserPassword = (user: IUserWithPassword) => {
     return userWithoutPassword;
 };
 
+/**
+ *
+ * @param page
+ * @param pageSize
+ * @description created start index and end index for pagination
+ */
 export const createStartAndEndIndex = (
     page?: number,
     pageSize?: number

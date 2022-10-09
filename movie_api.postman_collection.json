@@ -1,0 +1,216 @@
+{
+    "info": {
+        "_postman_id": "e6e29b44-527a-4784-92f0-2d30d38f213d",
+        "name": "movie_api",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+        "_exporter_id": "12057148"
+    },
+    "item": [
+        {
+            "name": "auth",
+            "item": [
+                {
+                    "name": "login",
+                    "request": {
+                        "method": "POST",
+                        "header": [],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"email\": \"msbarath7@gmail.com\",\n    \"password\": \"msdhoni007\"\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{BASE_URL}}/api/auth/login",
+                            "host": ["{{BASE_URL}}"],
+                            "path": ["api", "auth", "login"]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "register",
+                    "request": {
+                        "method": "POST",
+                        "header": [],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"email\": \"msbarath7@gmail.com\",\n    \"password\": \"msdhoni007\",\n    \"username\": \"Barath C\"\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{BASE_URL}}/api/auth/register",
+                            "host": ["{{BASE_URL}}"],
+                            "path": ["api", "auth", "register"]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "logout",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{BASE_URL}}/api/auth/logout",
+                            "host": ["{{BASE_URL}}"],
+                            "path": ["api", "auth", "logout"]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Refresh access token",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{BASE_URL}}/api/auth/refresh",
+                            "host": ["{{BASE_URL}}"],
+                            "path": ["api", "auth", "refresh"]
+                        }
+                    },
+                    "response": []
+                }
+            ]
+        },
+        {
+            "name": "movies",
+            "item": [
+                {
+                    "name": "add movie",
+                    "request": {
+                        "method": "POST",
+                        "header": [],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"name\": \"Movie 1\",\n    \"rating\": 10,\n    \"genre\": \"Horror\",\n    \"releaseDate\": \"2022-10-14\",\n    \"cast\": [\n        \"Barath C\",\n        \"Riya\"\n    ]\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{BASE_URL}}/api/movies/create",
+                            "host": ["{{BASE_URL}}"],
+                            "path": ["api", "movies", "create"]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "update movie",
+                    "request": {
+                        "method": "PUT",
+                        "header": [],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"name\": \"Movie Updated\",\n    \"rating\": 9,\n    \"genre\": \"Horror\",\n    \"releaseDate\": \"2022-05-10\",\n    \"cast\": [\n        \"Barath\",\n        \"Riya\"\n    ]\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{BASE_URL}}/api/movies/update/58777758-4b1a-48a4-9c1a-aacb2cb4004d",
+                            "host": ["{{BASE_URL}}"],
+                            "path": [
+                                "api",
+                                "movies",
+                                "update",
+                                "58777758-4b1a-48a4-9c1a-aacb2cb4004d"
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "delete movie",
+                    "request": {
+                        "method": "DELETE",
+                        "header": [],
+                        "url": {
+                            "raw": "{{BASE_URL}}/api/movies/delete/58777758-4b1a-48a4-9c1a-aacb2cb4004d",
+                            "host": ["{{BASE_URL}}"],
+                            "path": [
+                                "api",
+                                "movies",
+                                "delete",
+                                "58777758-4b1a-48a4-9c1a-aacb2cb4004d"
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "get all movies",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{BASE_URL}}/api/movies/all?page=1&pageSize=5",
+                            "host": ["{{BASE_URL}}"],
+                            "path": ["api", "movies", "all"],
+                            "query": [
+                                {
+                                    "key": "page",
+                                    "value": "1"
+                                },
+                                {
+                                    "key": "pageSize",
+                                    "value": "5"
+                                }
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "get single movie",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{BASE_URL}}/api/movies/0686d9fd-2f73-41cd-a22e-e11aeadf71a0",
+                            "host": ["{{BASE_URL}}"],
+                            "path": ["api", "movies", "0686d9fd-2f73-41cd-a22e-e11aeadf71a0"]
+                        }
+                    },
+                    "response": []
+                }
+            ]
+        }
+    ],
+    "event": [
+        {
+            "listen": "prerequest",
+            "script": {
+                "type": "text/javascript",
+                "exec": [""]
+            }
+        },
+        {
+            "listen": "test",
+            "script": {
+                "type": "text/javascript",
+                "exec": [""]
+            }
+        }
+    ],
+    "variable": [
+        {
+            "key": "BASE_URL",
+            "value": "https://movie-api-work.herokuapp.com",
+            "type": "string"
+        }
+    ]
+}

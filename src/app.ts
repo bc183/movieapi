@@ -19,6 +19,7 @@ app.get("/api/status", (request: Request, response: Response) => {
     return response.status(StatusCodes.OK).json({ status: "OK" });
 });
 
+// error handler
 app.use("*/", handler);
 
 export default app;

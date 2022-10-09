@@ -3,6 +3,11 @@ import { ValidationChain, validationResult } from "express-validator";
 import { StatusCodes } from "http-status-codes";
 import { IResponse } from "../types";
 
+/**
+ *
+ * @param validations
+ * @description Performs validation on the request
+ */
 export const validate = (validations: ValidationChain[]) => {
     return async (req: Request, res: Response, next: NextFunction) => {
         for (let validation of validations) {

@@ -8,7 +8,16 @@ import userService from "../services/user-service";
 import { IResponse, IUser, IUserWithPassword } from "../types";
 import { Environment, getEnv, removeUserPassword } from "../utils";
 
+/**
+ * Controller for Auth requests
+ */
 class AuthController {
+    /**
+     * @param req
+     * @param res
+     * @param next
+     * @description Register a user
+     */
     async register(
         req: Request,
         res: Response<IResponse<IUser>>,
@@ -39,6 +48,13 @@ class AuthController {
         }
     }
 
+    /**
+     *
+     * @param req
+     * @param res
+     * @param next
+     * @description logs out a user
+     */
     async logout(
         req: Request,
         res: Response<IResponse<string>>,
@@ -78,6 +94,13 @@ class AuthController {
         }
     }
 
+    /**
+     *
+     * @param req
+     * @param res
+     * @param next
+     * @description logs in a user
+     */
     async login(
         req: Request,
         res: Response<IResponse<IUser>>,
@@ -133,6 +156,13 @@ class AuthController {
         }
     }
 
+    /**
+     *
+     * @param req
+     * @param res
+     * @param next
+     * @description Provides a new acesss token with the refresh token
+     */
     async getAccessToken(
         req: Request,
         res: Response,

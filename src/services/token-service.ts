@@ -2,7 +2,14 @@ import jwt from "jsonwebtoken";
 import { Tokens } from "../types";
 import { Environment, getEnv } from "../utils";
 
+/**
+ * Service class for Token Operations
+ */
 class TokenService {
+    /**
+     * @description Returns the access token with the given email as payload
+     * @param email
+     */
     generateAccessToken(email: string): string {
         try {
             const accessToken = jwt.sign(
@@ -18,6 +25,10 @@ class TokenService {
         }
     }
 
+    /**
+     * @description Returns the refresh token with the given email as payload
+     * @param email
+     */
     generateRefreshToken(email: string): string {
         try {
             const refreshToken = jwt.sign(

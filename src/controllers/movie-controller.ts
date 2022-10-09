@@ -3,7 +3,17 @@ import { StatusCodes } from "http-status-codes";
 import movieService from "../services/movie-service";
 import { IMovie, IMovieDTO, IResponse } from "../types";
 
+/**
+ * Controller class Movie based requests
+ */
 class MovieController {
+    /**
+     *
+     * @param req
+     * @param res
+     * @param next
+     * @description Returns All movies paginated with the given parameters
+     */
     async getAllMovies(
         req: Request,
         res: Response<IResponse<IMovie[]>>,
@@ -31,6 +41,13 @@ class MovieController {
         }
     }
 
+    /**
+     *
+     * @param req
+     * @param res
+     * @param next
+     * @description Returns the movie that has the given id.
+     */
     async getMovie(
         req: Request,
         res: Response<IResponse<IMovie>>,
@@ -54,6 +71,13 @@ class MovieController {
         }
     }
 
+    /**
+     *
+     * @param req
+     * @param res
+     * @param next
+     * @description Create a movie
+     */
     async createMovie(
         req: Request,
         res: Response<IResponse<IMovieDTO>>,
@@ -77,6 +101,13 @@ class MovieController {
         }
     }
 
+    /**
+     *
+     * @param req
+     * @param res
+     * @param next
+     * @description Update a movie based on id
+     */
     async updateMovie(
         req: Request,
         res: Response<IResponse<IMovieDTO>>,
@@ -100,6 +131,13 @@ class MovieController {
         }
     }
 
+    /**
+     *
+     * @param req
+     * @param res
+     * @param next
+     * @description Delete a movie based on id
+     */
     async deleteMovie(
         req: Request,
         res: Response<IResponse<string>>,

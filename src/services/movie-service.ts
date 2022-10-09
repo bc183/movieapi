@@ -5,7 +5,13 @@ import UnAuthenticatedError from "../exceptions/unathenticated-error";
 import { IMovie, IMovieDTO, IUser, PrismaErrorCodes } from "../types";
 import { createStartAndEndIndex } from "../utils";
 
+/**
+ * Service class for Movie operations
+ */
 class MovieService {
+    /**
+     * @description Returns a list of movies paginated by the specified parameters
+     */
     async getAllMovies(
         noOfRecords?: number,
         page?: number
@@ -28,6 +34,12 @@ class MovieService {
         }
     }
 
+    /**
+     *
+     * @param movie
+     * @param user
+     * @description Saves a movie to the database
+     */
     async saveMovie(movie: IMovieDTO, user?: IUser): Promise<IMovie> {
         try {
             if (!user) {
@@ -52,6 +64,11 @@ class MovieService {
         }
     }
 
+    /**
+     *
+     * @param id
+     * @description Returns a movie based on id from the database
+     */
     async getMovieById(id: string): Promise<IMovie> {
         try {
             const movie = await db.movies.findUnique({
@@ -68,6 +85,12 @@ class MovieService {
         }
     }
 
+    /**
+     *
+     * @param movie
+     * @param id
+     * @returns Updates a movie based on id in the database
+     */
     async updateMovie(movie: IMovieDTO, id: string): Promise<IMovie> {
         try {
             const updatedMovie = await db.movies.update({
@@ -92,6 +115,11 @@ class MovieService {
         }
     }
 
+    /**
+     *
+     * @param id
+     * @returns deletes a movie based on id from the database
+     */
     async deleteMovie(id: string): Promise<boolean> {
         try {
             await db.movies.delete({

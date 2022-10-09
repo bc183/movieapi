@@ -4,6 +4,13 @@ import db from "../db";
 import UnAuthenticatedError from "../exceptions/unathenticated-error";
 import { ITokenPayload, Tokens } from "../types";
 
+/**
+ *
+ * @param req
+ * @param res
+ * @param next
+ * @description Check if access token is valid
+ */
 export const auth = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
     try {
         const accessToken = req.cookies["access_token"];

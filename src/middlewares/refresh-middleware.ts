@@ -4,6 +4,13 @@ import db from "../db";
 import UnAuthenticatedError from "../exceptions/unathenticated-error";
 import { ITokenPayload, Tokens } from "../types";
 
+/**
+ *
+ * @param req
+ * @param res
+ * @param next
+ * @description Check if refresh token is valid
+ */
 export const checkRefreshToken = async (
     req: Request,
     res: Response,
